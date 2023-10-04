@@ -1,95 +1,110 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
+import React, { useEffect } from "react";
+
+import { GlobalStyles } from "@/ui/theme/GlobalStyles";
+import { todoController } from "@/ui/controller/todo";
+
+// const bg = "https://mariosouto.com/cursos/crudcomqualidade/bg";
+const bg = "/bg.jpg";
+
+interface HomeTodo {
+  id: string;
+  content: string;
+}
+
+export default function HomePage() {
+  const [todos, setTodos] = React.useState<HomeTodo[]>([]);
+
+  useEffect(() => {
+    todoController.get().then((todos) => {
+      setTodos(todos);
+    });
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <GlobalStyles themeName="devsoutinho" />
+      <header
+        style={{
+          backgroundImage: `url('${bg}')`,
+        }}
+      >
+        <div className="typewriter">
+          <h1>O que fazer hoje?</h1>
         </div>
-      </div>
+        <form>
+          <input type="text" placeholder="Correr, Estudar..." />
+          <button type="submit" aria-label="Adicionar novo item">
+            +
+          </button>
+        </form>
+      </header>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <section>
+        <form>
+          <input type="text" placeholder="Filtrar lista atual, ex: Dentista" />
+        </form>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <table border={1}>
+          <thead>
+            <tr>
+              <th align="left">
+                <input type="checkbox" disabled />
+              </th>
+              <th align="left">Id</th>
+              <th align="left">Conteúdo</th>
+              <th />
+            </tr>
+          </thead>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+          <tbody>
+            {todos.map((todo) => {
+              return (
+                <tr key={todo.id}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>{todo.id.substring(0, 4)}</td>
+                  <td>{todo.content}</td>
+                  <td align="right">
+                    <button data-type="delete">Apagar</button>
+                  </td>
+                </tr>
+              );
+            })}
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+            {/* <tr>
+              <td colSpan={4} align="center" style={{ textAlign: "center" }}>
+                Carregando...
+              </td>
+            </tr> */}
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+            {/* <tr>
+              <td colSpan={4} align="center">
+                Nenhum item encontrado
+              </td>
+            </tr> */}
+
+            {/* <tr>
+              <td colSpan={4} align="center" style={{ textAlign: "center" }}>
+                <button data-type="load-more">
+                  Carregar mais{" "}
+                  <span
+                    style={{
+                      display: "inline-block",
+                      marginLeft: "4px",
+                      fontSize: "1.2em",
+                    }}
+                  >
+                    ↓
+                  </span>
+                </button>
+              </td>
+            </tr> */}
+          </tbody>
+        </table>
+      </section>
     </main>
-  )
+  );
 }
