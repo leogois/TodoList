@@ -7,13 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint './**/*.{jsx,jsx,ts,tsx}'",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test dev http://localhost:3000 cy:run"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -21,6 +26,7 @@
     "@types/react-dom": "^18",
     "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "cypress": "^13.3.0",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^8.8.0",
@@ -30,6 +36,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
     "prettier": "^2.8.7",
+    "start-server-and-test": "^2.0.1",
     "typescript": "5.1"
   }
 }

@@ -1,16 +1,58 @@
 {
   "todos": [
     {
-      "id": "66cc8506-f863-42bb-98df-08f8c76b4dd3",
-      "date": "2023-10-04T02:16:00.484Z",
-      "content": "Primeira TODO",
+      "id": "94e53df5-e247-4e83-8897-4939ed358c48",
+      "date": "2023-10-04T19:21:41.513Z",
+      "content": "Estudar Lógica de progamação",
       "done": false
     },
     {
-      "id": "fb04ae94-5cb3-49f7-9536-4d7f0a3fde36",
-      "date": "2023-10-04T02:16:00.488Z",
-      "content": "Atualizada!",
+      "id": "b04359d9-5242-4ed8-8903-56befb655d11",
+      "date": "2023-10-04T19:22:06.087Z",
+      "content": "resolver problema de lint",
+      "done": false
+    },
+    {
+      "id": "958acc38-39f6-4b0c-b109-28d8b40d4191",
+      "date": "2023-10-04T19:22:23.855Z",
+      "content": "organizando as paletas de cores css",
+      "done": false
+    },
+    {
+      "id": "1f398c67-52b7-44b6-ae4b-5be84c51f1e8",
+      "date": "2023-10-04T19:23:02.750Z",
+      "content": "código funcionando com peformace",
+      "done": false
+    },
+    {
+      "id": "f3ab1d8c-6d87-431d-b479-19b22d3811c7",
+      "date": "2023-10-04T21:33:12.019Z",
+      "content": "Estudar variaveis",
+      "done": false
+    },
+    {
+      "id": "a120bbf6-ef9b-48c5-a095-74e236199b13",
+      "date": "2023-10-04T21:33:28.185Z",
+      "content": "todo conteudpo explicito",
+      "done": false
+    },
+    {
+      "id": "db4c8966-69e6-4c4d-b197-29ccced6825b",
+      "date": "2023-10-04T21:33:44.973Z",
+      "content": "controle de fluxo",
+      "done": false
+    },
+    {
+      "id": "0fb72857-1eba-47f7-ac82-f4307ec9257a",
+      "date": "2023-10-04T21:33:55.480Z",
+      "content": "agora vai",
       "done": true
+    },
+    {
+      "id": "ae511bef-2b46-46cb-8311-d391f46e89a7",
+      "date": "2023-10-04T23:26:20.085Z",
+      "content": "Atualizar agora",
+      "done": false
     }
   ]
 }

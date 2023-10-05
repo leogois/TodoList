@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import fs from "fs";
 import { v4 as uuid } from "uuid";
-// const fs = require('fs')
+// const fs = require("fs"); - CommonJS
 const DB_FILE_PATH = "./core/db";
 
 // console.log("[CRUD]");
@@ -15,7 +15,7 @@ interface Todo {
   done: boolean;
 }
 
-function create(content: string): Todo {
+export function create(content: string): Todo {
   const todo: Todo = {
     id: uuid(),
     date: new Date().toISOString(),
@@ -31,6 +31,7 @@ function create(content: string): Todo {
     JSON.stringify(
       {
         todos,
+        dogs: [],
       },
       null,
       2
@@ -43,12 +44,14 @@ export function read(): Array<Todo> {
   const dbString = fs.readFileSync(DB_FILE_PATH, "utf-8");
   const db = JSON.parse(dbString || "{}");
   if (!db.todos) {
+    // Fail Fast Validations
     return [];
   }
+
   return db.todos;
 }
 
-function updateContentById(id: UUID, partialTodo: Partial<Todo>) {
+export function update(id: UUID, partialTodo: Partial<Todo>): Todo {
   let updatedTodo;
   const todos = read();
   todos.forEach((currentTodo) => {
@@ -76,7 +79,13 @@ function updateContentById(id: UUID, partialTodo: Partial<Todo>) {
   return updatedTodo;
 }
 
-function deleteById(id: UUID) {
+function updateContentById(id: UUID, content: string): Todo {
+  return update(id, {
+    content,
+  });
+}
+
+export function deleteById(id: UUID) {
   const todos = read();
 
   const todosWithoutOne = todos.filter((todo) => {
@@ -108,8 +117,11 @@ function CLEAR_DB() {
 // const secondTodo = create("Segunda TODO");
 // deleteById(secondTodo.id);
 // const thirdTodo = create("Terceira TODO");
-// updateContentById(thirdTodo.id, {
-//   content: "Atualizada!",
-//   done: true,
-// });
-// console.log(read());
+// // update(thirdTodo.id, {
+// //   content: "Atualizada!",
+// //   done: true,
+// // });
+// updateContentById(thirdTodo.id, "Atualizada!")
+// const todos = read();
+// console.log(todos);
+// console.log(todos.length);

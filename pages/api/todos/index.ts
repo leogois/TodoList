@@ -1,19 +1,26 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { todoController } from "@server/controller/todo";
 
-export default function handler(
+export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
   // eslint-disable-next-line no-console
-  console.log(request.method);
+  // console.log(request.method);
 
   if (request.method === "GET") {
-    todoController.get(request, response);
+    await todoController.get(request, response);
+    return;
+  }
+
+  if (request.method === "POST") {
+    await todoController.create(request, response);
     return;
   }
 
   response.status(405).json({
-    message: "Method not allowed",
+    error: {
+      message: "Method not allowed",
+    },
   });
 }
