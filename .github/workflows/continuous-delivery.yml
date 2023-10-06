@@ -9,8 +9,8 @@ on:
     types: [opened, synchronize]
 
 env:
-  # VERCEL_ORG_ID: nvquWHxA3eADFldS6IK8tX7W
-  # VERCEL_PROJECT_ID: prj_63AYbMLPiYGiYreBLPVr4mos1mKu
+  VERCEL_ORG_ID: team_3H4mDMM7oqw7kUknzHqqBqOm
+  VERCEL_PROJECT_ID: prj_63AYbMLPiYGiYreBLPVr4mos1mKu
 
 jobs: 
   deploy: 
@@ -25,4 +25,4 @@ jobs:
       - name: "Install Dependencies"
         run: "npm install"
       - name: "Deploy"
-        run: "npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}"
+        run: "npx vercel --prod --token=pjGniFmTQA2CyqzBs2SEa6Hu"
